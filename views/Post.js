@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 const Post = ({ name, moreinfo, text, img }) => {
+   
     let image={uri:img}
 
     return (

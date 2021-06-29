@@ -5,17 +5,24 @@ const initialState={
 }
 
 const stateReducer=(state=initialState,action)=>{
-    console.log(action)
+    console.log("dataddd",action);
     switch(action.type){
         case LOGIN: return {
             ...state,
             username:action.username,
 
         }
-        case POST: return{
+        case POST: 
+       
+        return {
             ...state,
-            post:[...state.post,action.data]
+            
+           post:[...state.post,{key:action.key,data:action.data}]
+
         }
+            
+          
+        
         default:return{
             ...state
         }

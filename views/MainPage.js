@@ -1,15 +1,25 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { StyleSheet, Text, ScrollView } from 'react-native'
 import Header from './Header'
 import Post from './Post'
+import{useSelector} from 'react-redux';
 
 
 const MainPage = ({navigation}) => {
+ const [post, setPost] = useState([])
+    const state = useSelector(state => state.reduce.username);
+    console.log("state",state);
+    const posts=useSelector(state=>state.reduce.post);
+  
+    console.log("posts", posts);
+    
+   
+
     return (
         <ScrollView style={{backgroundColor:'#f5f5f5'}}> 
        
             <Header nav={navigation}/>
-             <Post name="Kevin Naughton" 
+             {/* <Post name="Kevin Naughton" 
              moreinfo="Software Engineer at Google " 
              text="I'm excited to share that toady will be 
              my first day at Google as Software Engineer."
@@ -25,7 +35,7 @@ const MainPage = ({navigation}) => {
             //  img='https://reactnativecode.com/wp-content/uploads/2017/05/react_thumb_install.png'
             img='data:image/jpeg;base64,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'
            
-             />
+             /> */}
           <Post name="Mathews" 
              moreinfo=" Student |Aspiring Software Engineer " 
              text="Here's a guide to set up react native in your laptop."
@@ -33,6 +43,14 @@ const MainPage = ({navigation}) => {
              img='https://reactnativecode.com/wp-content/uploads/2017/05/react_thumb_install.png'
           
              />
+             {posts.length>0?posts.map((data ,key)=>{
+                 console.log("data",data);
+                 return <Post 
+                              name={state}
+                              moreinfo={data.data.postCreate}
+                              text={data.data.postCreate}
+                              img={'https://images.app.goo.gl/9ds8SEibSjki9gvr7'}/>
+             }):<Text></Text>}
              
         </ScrollView>
     )

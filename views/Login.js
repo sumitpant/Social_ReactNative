@@ -1,19 +1,21 @@
 import React,{useState} from 'react'
 import { StyleSheet, Text, View ,Alert,TouchableOpacity,} from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
-import {connect} from 'react-redux'
+import {connect ,useDispatch,useSelector} from 'react-redux'
 import {userName} from '../redux/actions'
 
 
 const Login = ({navigation,username}) => {
-    const [email, setUsername] = useState();
+const [email, setUsername] = useState();
 const [password, setPassword] = useState();
-
+const dispatch=useDispatch();
     const click= async()=>{
      
         try{
-            console.log("email",email);
-            username(email);
+           
+           
+            dispatch(userName(email));
+           
             navigation.replace('Home')
         }
         catch(e){
@@ -67,15 +69,17 @@ const mapStateToProps=(state)=>{
     }
 
 }
-const mapDispatchToProps=(dispatch)=>{
+// const mapDispatchToProps=(dispatch)=>{
  
-    return {
+//     return {
         
-        username:(name)=>dispatch(userName(name))
-    }
+//         username:(name)=>dispatch(userName(name))
+//     }
 
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
+// }
+
+// export default connect(mapStateToProps,mapDispatchToProps)(Login)
+export default Login
 
 const styles = StyleSheet.create({
     container:{
